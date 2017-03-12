@@ -1,1 +1,5 @@
-Hola
+Download$ apache-tomcat-8.5.11.tar
+cp apache-tomcat-8.5.11.tar /usr/local/
+tar -xvf apache-tomcat-8.5.11.tar
+rm -d apache-tomcat-8.5.11.tar
+mv apache-tomcat-8.5.11 tomcat
