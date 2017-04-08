@@ -1,3 +1,8 @@
 INDEX VERSION 1.3+/Users/hatake/Documents/Escuela/2017-Recurses/WAD/Practicas/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+2522075386.index
+3331484206.index
+612031949.index
+1663721345.index
+3046296617.index
 3589128330.index
 2094730000.index
