@@ -1,0 +1,11 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tarjeta_tipo")
+public class TarjetaTipo {
+	private Integer id;
+	private String tipo;
+}

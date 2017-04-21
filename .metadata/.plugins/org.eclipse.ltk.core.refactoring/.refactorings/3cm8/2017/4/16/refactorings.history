@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 4 elements to &apos;STCM-WEB/src/main/resources&apos;&#x0A;- Original project: &apos;3cm8&apos;&#x0A;- Destination element: &apos;STCM-WEB/src/main/resources&apos;&#x0A;- Original elements:&#x0A;     hibernateSessionFactory.xml&#x0A;     applicationContext.xml&#x0A;     jdbc.properties&#x0A;     dataSource.xml" description="Copy files" destination="=STCM-WEB/src\/main\/resources" element1="src/main/resources/hibernateSessionFactory.xml" element2="src/main/resources/applicationContext.xml" element3="src/main/resources/jdbc.properties" element4="src/main/resources/dataSource.xml" files="4" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1492308387675" units="0" version="1.0"/>
+</session>

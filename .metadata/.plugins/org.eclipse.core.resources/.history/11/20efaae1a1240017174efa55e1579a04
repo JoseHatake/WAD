@@ -1,0 +1,21 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tarjeta")
+public class Tarjeta {
+	private Integer id;
+	private String numeroSerieHexadecimal;
+	private Date fechaAlta;
+	private Date vigencia;
+	private Integer tipo;
+	private Integer estatus;
+	private String maquina;
+	private TarjetaTipo tipoTarjetaObj;
+	private TarjetaEstatus estatusTarjetaObj;
+	private Maquina maquinaObj;
+}

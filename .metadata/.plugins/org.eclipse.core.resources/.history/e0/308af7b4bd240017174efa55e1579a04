@@ -1,0 +1,8 @@
+package mx.gob.stcm.credencial.accesoDB.dao;
+
+import org.springframework.stereotype.Service;
+
+@Service("beneficiarioDao")
+public class BeneficiarioDao {
+
+}

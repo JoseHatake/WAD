@@ -1,0 +1,11 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "beneficia_discap")
+public class BeneficiaDiscapacidad {
+	private id_curp;
+	private id_discapacidad;
+}

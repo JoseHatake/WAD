@@ -1,0 +1,85 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "beneficia_discap")
+public class BeneficiaDiscapacidad {
+	
+	@Id
+	@Column(name = "curp")
+	private String curp;
+	
+	@Column(name = "discapacidad")
+	private Integer discapacidad;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "discapacidad", referencedColumnName = "discapacidad", insertable = false, unique = false)
+	private Discapacidad discapacidadObj;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "curp", referencedColumnName = "curp", insertable = false, updatable = false)
+	private Beneficiario beneficiarioObj;
+
+	/**
+	 * @return the curp
+	 */
+	public String getCurp() {
+		return curp;
+	}
+
+	/**
+	 * @param curp the curp to set
+	 */
+	public void setCurp(String curp) {
+		this.curp = curp;
+	}
+
+	/**
+	 * @return the discapacidad
+	 */
+	public Integer getDiscapacidad() {
+		return discapacidad;
+	}
+
+	/**
+	 * @param discapacidad the discapacidad to set
+	 */
+	public void setDiscapacidad(Integer discapacidad) {
+		this.discapacidad = discapacidad;
+	}
+
+	/**
+	 * @return the discapacidadObj
+	 */
+	public Discapacidad getDiscapacidadObj() {
+		return discapacidadObj;
+	}
+
+	/**
+	 * @param discapacidadObj the discapacidadObj to set
+	 */
+	public void setDiscapacidadObj(Discapacidad discapacidadObj) {
+		this.discapacidadObj = discapacidadObj;
+	}
+
+	/**
+	 * @return the beneficiarioObj
+	 */
+	public Beneficiario getBeneficiarioObj() {
+		return beneficiarioObj;
+	}
+
+	/**
+	 * @param beneficiarioObj the beneficiarioObj to set
+	 */
+	public void setBeneficiarioObj(Beneficiario beneficiarioObj) {
+		this.beneficiarioObj = beneficiarioObj;
+	}
+}

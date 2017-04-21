@@ -1,0 +1,215 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.JoinColumnOrFormula;
+
+@Entity
+@Table(name = "tarjeta")
+public class Tarjeta {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_tarjeta")
+	private Integer id;
+	
+	@Column(name = "num_serie")
+	private String numeroSerieHexadecimal;
+	
+	@Column(name = "fecha_alta")
+	private Date fechaAlta;
+	
+	@Column(name = "vigencia")
+	private Date vigencia;
+	
+	@Column(name = "tipo")
+	private Integer tipo;
+	
+	@Column(name = "estatus")
+	private Integer estatus;
+	
+	@Column(name = "maquina")
+	private String maquina;
+	
+	@OneToOne(optional = false, mappedBy = "tarjeta")
+	@JoinColumn(name = "tipo", referencedColumnName = "id_tipoT", insertable = false, updatable = false)
+	private TarjetaTipo tipoTarjetaObj;
+	
+	@OneToOne(optional = false, mappedBy = "tarjeta")
+	@JoinColumn(name = "estatus", referencedColumnName = "id_estatusT", insertable = false, updatable = false)
+	private TarjetaEstatus estatusTarjetaObj;
+	
+	@OneToOne(optional = false, mappedBy = "tarjeta")
+	@JoinColumn(name = "maquina", referencedColumnName = "serie", insertable = false, updatable = false)
+	private Maquina maquinaObj;
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "tarjeta")
+	@JoinColumn(name = "id_tarjeta", referencedColumnName = "tarjeta", insertable = false, updatable = false)
+	private List<BeneficiaTarjeta> beneficiaTarjetaObj;
+
+	/**
+	 * @return the beneficiaTarjetaObj
+	 */
+	public List<BeneficiaTarjeta> getBeneficiaTarjetaObj() {
+		return beneficiaTarjetaObj;
+	}
+
+	/**
+	 * @param beneficiaTarjetaObj the beneficiaTarjetaObj to set
+	 */
+	public void setBeneficiaTarjetaObj(List<BeneficiaTarjeta> beneficiaTarjetaObj) {
+		this.beneficiaTarjetaObj = beneficiaTarjetaObj;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the numeroSerieHexadecimal
+	 */
+	public String getNumeroSerieHexadecimal() {
+		return numeroSerieHexadecimal;
+	}
+
+	/**
+	 * @param numeroSerieHexadecimal the numeroSerieHexadecimal to set
+	 */
+	public void setNumeroSerieHexadecimal(String numeroSerieHexadecimal) {
+		this.numeroSerieHexadecimal = numeroSerieHexadecimal;
+	}
+
+	/**
+	 * @return the fechaAlta
+	 */
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	/**
+	 * @param fechaAlta the fechaAlta to set
+	 */
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
+	/**
+	 * @return the vigencia
+	 */
+	public Date getVigencia() {
+		return vigencia;
+	}
+
+	/**
+	 * @param vigencia the vigencia to set
+	 */
+	public void setVigencia(Date vigencia) {
+		this.vigencia = vigencia;
+	}
+
+	/**
+	 * @return the tipo
+	 */
+	public Integer getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
+	}
+
+	/**
+	 * @return the estatus
+	 */
+	public Integer getEstatus() {
+		return estatus;
+	}
+
+	/**
+	 * @param estatus the estatus to set
+	 */
+	public void setEstatus(Integer estatus) {
+		this.estatus = estatus;
+	}
+
+	/**
+	 * @return the maquina
+	 */
+	public String getMaquina() {
+		return maquina;
+	}
+
+	/**
+	 * @param maquina the maquina to set
+	 */
+	public void setMaquina(String maquina) {
+		this.maquina = maquina;
+	}
+
+	/**
+	 * @return the tipoTarjetaObj
+	 */
+	public TarjetaTipo getTipoTarjetaObj() {
+		return tipoTarjetaObj;
+	}
+
+	/**
+	 * @param tipoTarjetaObj the tipoTarjetaObj to set
+	 */
+	public void setTipoTarjetaObj(TarjetaTipo tipoTarjetaObj) {
+		this.tipoTarjetaObj = tipoTarjetaObj;
+	}
+
+	/**
+	 * @return the estatusTarjetaObj
+	 */
+	public TarjetaEstatus getEstatusTarjetaObj() {
+		return estatusTarjetaObj;
+	}
+
+	/**
+	 * @param estatusTarjetaObj the estatusTarjetaObj to set
+	 */
+	public void setEstatusTarjetaObj(TarjetaEstatus estatusTarjetaObj) {
+		this.estatusTarjetaObj = estatusTarjetaObj;
+	}
+
+	/**
+	 * @return the maquinaObj
+	 */
+	public Maquina getMaquinaObj() {
+		return maquinaObj;
+	}
+
+	/**
+	 * @param maquinaObj the maquinaObj to set
+	 */
+	public void setMaquinaObj(Maquina maquinaObj) {
+		this.maquinaObj = maquinaObj;
+	}
+}

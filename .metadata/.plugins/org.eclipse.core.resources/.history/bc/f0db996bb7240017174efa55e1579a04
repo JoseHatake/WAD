@@ -1,0 +1,223 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "usuarios")
+public class Usuario {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_usuario")
+	private Integer id;
+	
+	@Column(name = "paterno")
+	private String apellidoPaterno;
+	
+	@Column(name = "materno")
+	private String apellidoMaterno;
+	
+	@Column(name = "nombre")
+	private String nombre;
+	
+	@Column(name = "user")
+	private String login;
+	
+	@Column(name = "clave")
+	private String password;
+	
+	@Column(name = "rol")
+	private Integer rol;
+	
+	@Column(name = "maquina")
+	private String numSerieMaquina;
+	
+	@Column(name = "estacion")
+	private Integer estacion;
+	
+	@OneToOne(optional = false, mappedBy = "usuarios")
+	@JoinColumn(name = "rol", referencedColumnName = "rol", insertable = false, updatable = false)
+	private RolUsuario rolObj;
+	
+	@OneToOne(optional = false, mappedBy = "usuarios")
+	@JoinColumn(name = "maquina", referencedColumnName = "maquina", insertable = false, updatable = false)
+	private Maquina maquinaObj;
+	
+	@OneToOne(optional = false, mappedBy = "usuarios")
+	@JoinColumn(name = "estacion", referencedColumnName = "estacion", insertable = false, updatable = false)
+	private EstacioMetro estacionObj;
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the apellidoPaterno
+	 */
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
+	}
+
+	/**
+	 * @param apellidoPaterno the apellidoPaterno to set
+	 */
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
+	}
+
+	/**
+	 * @return the apellidoMaterno
+	 */
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
+	}
+
+	/**
+	 * @param apellidoMaterno the apellidoMaterno to set
+	 */
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
+	}
+
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @return the login
+	 */
+	public String getLogin() {
+		return login;
+	}
+
+	/**
+	 * @param login the login to set
+	 */
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @return the rol
+	 */
+	public Integer getRol() {
+		return rol;
+	}
+
+	/**
+	 * @param rol the rol to set
+	 */
+	public void setRol(Integer rol) {
+		this.rol = rol;
+	}
+
+	/**
+	 * @return the numSerieMaquina
+	 */
+	public String getNumSerieMaquina() {
+		return numSerieMaquina;
+	}
+
+	/**
+	 * @param numSerieMaquina the numSerieMaquina to set
+	 */
+	public void setNumSerieMaquina(String numSerieMaquina) {
+		this.numSerieMaquina = numSerieMaquina;
+	}
+
+	/**
+	 * @return the estacion
+	 */
+	public Integer getEstacion() {
+		return estacion;
+	}
+
+	/**
+	 * @param estacion the estacion to set
+	 */
+	public void setEstacion(Integer estacion) {
+		this.estacion = estacion;
+	}
+
+	/**
+	 * @return the rolObj
+	 */
+	public RolUsuario getRolObj() {
+		return rolObj;
+	}
+
+	/**
+	 * @param rolObj the rolObj to set
+	 */
+	public void setRolObj(RolUsuario rolObj) {
+		this.rolObj = rolObj;
+	}
+
+	/**
+	 * @return the maquinaObj
+	 */
+	public Maquina getMaquinaObj() {
+		return maquinaObj;
+	}
+
+	/**
+	 * @param maquinaObj the maquinaObj to set
+	 */
+	public void setMaquinaObj(Maquina maquinaObj) {
+		this.maquinaObj = maquinaObj;
+	}
+
+	/**
+	 * @return the estacionObj
+	 */
+	public EstacioMetro getEstacionObj() {
+		return estacionObj;
+	}
+
+	/**
+	 * @param estacionObj the estacionObj to set
+	 */
+	public void setEstacionObj(EstacioMetro estacionObj) {
+		this.estacionObj = estacionObj;
+	}
+}

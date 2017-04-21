@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workingSetManager>
-<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1489171897293_1" label="3cv8" name="3cv8">
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/3cv8" type="4"/>
-</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1489171897293_1" label="3cv8" name="3cv8"/>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1491670828765_2" label="3cm8" name="3cm8"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1487794440750_0" label="Window Working Set" name="Aggregate for window 1487794440749"/>
 </workingSetManager>

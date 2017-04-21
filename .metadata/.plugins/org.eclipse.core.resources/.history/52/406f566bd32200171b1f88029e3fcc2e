@@ -1,0 +1,9 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+@Entity
+@Table(name = "delegacion")
+public class Delegaciones {
+	private Integer id;
+	private String nombreDelegacion;
+	private 
+}

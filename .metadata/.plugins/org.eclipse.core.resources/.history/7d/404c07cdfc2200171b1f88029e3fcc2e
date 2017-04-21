@@ -1,0 +1,17 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "sanguieno")
+public class Sanguineo {
+	@Id
+	@Column(name = "id_sangre")
+	private Integer id;
+	
+	@Column(name = "tipo")
+	private String tipoSanguineo;
+}

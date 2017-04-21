@@ -30,7 +30,9 @@
 				<td><%=u.getPrimerApellido()%></td>
 				<td><%=u.getSegundoApellido()%></td>
 				<td><%=u.getNacimiento()%></td>
-				<td><a href="ModificarUsuario?idUsuario=<%=u.getId()%>">M</a><a href="EliminarUsuario?idUsuario=<%=u.getId()%>">E</a></td>
+				<td><a href="ModificarUsuario?idUsuario=<%=u.getId()%>">M</a>
+					<a href="EliminarUsuario?idUsuario=<%=u.getId()%>">E</a>
+				</td>
 			</tr>
 			<%}%>
 		</tbody>

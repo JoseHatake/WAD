@@ -1,3 +1,4 @@
+<%@page import="mx.ipn.escom.wad.util.FieldErrors"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="mx.ipn.escom.wad.controlacceso.mapeo.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,21 +14,41 @@
 	<%
 		Usuario usuario = (Usuario) request.getAttribute("usuario");
 		String mensaje = (String) request.getAttribute("mensaje");
+		FieldErrors fieldErrors = (FieldErrors) request.getAttribute("fieldErrors");
 		if (mensaje != null) {
 	%>
 	<h3><%=mensaje%></h3>
 	<%
 		}
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		String fechaString=format.format(usuario.getNacimiento());
+		String fechaString = null;
+		if (usuario.getNacimiento() != null) {
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+			fechaString = format.format(usuario.getNacimiento());
+		} else {
+			fechaString = "";
+		}
 	%>
 	<form action="ModificarUsuario" method="post">
 		<div>
-		<input type="hidden" name="idUsuario" value="<%=usuario.getId()%>">
 			<div>Nombre</div>
+			<input type="hidden" name="idUsuario" value="<%=usuario.getId()%>">
 			<div>
-				<input name="nombre"
-					value="<%=getString(usuario.getNombre())%>" />
+				<input name="nombre" value="<%=getString(usuario.getNombre())%>" />
+				<%
+					if (fieldErrors.contains("nombre")) {
+				%>
+				<ul>
+					<%
+						for (String e : fieldErrors.get("nombre")) {
+					%>
+					<li><%=e%></li>
+					<%
+						}
+					%>
+				</ul>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		<div>
@@ -35,6 +56,21 @@
 			<div>
 				<input name="primerApellido"
 					value="<%=getString(usuario.getPrimerApellido())%>" />
+				<%
+					if (fieldErrors.contains("primerApellido")) {
+				%>
+				<ul>
+					<%
+						for (String e : fieldErrors.get("primerApellido")) {
+					%>
+					<li><%=e%></li>
+					<%
+						}
+					%>
+				</ul>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		<div>
@@ -42,13 +78,42 @@
 			<div>
 				<input name="segundoApellido"
 					value="<%=getString(usuario.getSegundoApellido())%>" />
+				<%
+					if (fieldErrors.contains("segundoApellido")) {
+				%>
+				<ul>
+					<%
+						for (String e : fieldErrors.get("segundoApellido")) {
+					%>
+					<li><%=e%></li>
+					<%
+						}
+					%>
+				</ul>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		<div>
 			<div>Nacimiento</div>
 			<div>
-				<input name="nacimiento"
-					value="<%=fechaString %>" />
+				<input name="nacimiento" value="<%=fechaString%>" />
+				<%
+					if (fieldErrors.contains("nacimiento")) {
+				%>
+				<ul>
+					<%
+						for (String e : fieldErrors.get("nacimiento")) {
+					%>
+					<li><%=e%></li>
+					<%
+						}
+					%>
+				</ul>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		<div>

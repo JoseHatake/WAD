@@ -33,6 +33,8 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="/Users/hatake/Downloads/3cv3-wad"/>
+			<item value="/Users/hatake/Documents/Escuela/2017-Recurses/WAD/Practicas/3cm8"/>
 			<item value="/Users/hatake/Documents/Escuela/2017-Recurses/WAD/Practicas/3cv8"/>
 			<item value="/Users/hatake/Downloads/3cv8"/>
 		</list>
@@ -58,6 +60,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="/Users/hatake/Documents/Proyectos/ProyectoMetro"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -70,16 +73,19 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="STCM_WEB.STCM_WEB"/>
 			<item value="prueba.prueba"/>
 			<item value="proyecto.proyecto"/>
 			<item value="cm8.cm8"/>
 		</list>
 		<list key="groupId">
+			<item value="STCM-WEB"/>
 			<item value="prueba"/>
 			<item value="proyecto"/>
 			<item value="3cm8"/>
 		</list>
 		<list key="artifactId">
+			<item value="STCM-WEB"/>
 			<item value="prueba"/>
 			<item value="proyecto"/>
 			<item value="3cm8"/>
@@ -93,6 +99,7 @@
 			<item value="[name]"/>
 		</list>
 		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
 			<item value="1"/>
 		</list>
 	</section>

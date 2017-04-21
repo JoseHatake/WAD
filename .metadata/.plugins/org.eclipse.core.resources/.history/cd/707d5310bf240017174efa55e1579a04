@@ -1,0 +1,35 @@
+package mx.gob.stcm.credencial.accesoDB.dao;
+
+import javax.persistence.Query;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+
+import mx.gob.stcm.credencial.accesoDB.mapeo.Beneficiario;
+
+@Service("beneficiarioDao")
+@Scope(value = BeanDefinition.SCOPE_SINGLETON)
+public class BeneficiarioDao {
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	public Beneficiario save(Beneficiario beneficiario){
+		sessionFactory.getCurrentSession().save(beneficiario);
+		return beneficiario;
+	}
+	
+	public Beneficiario update(Beneficiario beneficiario){
+		sessionFactory.getCurrentSession().merge(beneficiario);
+		sessionFactory.getCurrentSession().update(beneficiario);
+		return beneficiario;
+	}
+	
+	public void delete(String curp){
+		Query q = sessionFactory.getCurrentSession().getNamedQuery("deleteBeneficiario");
+		q.setParameter("idUsuario", idUsuario);
+		q.executeUpdate();
+	}
+}

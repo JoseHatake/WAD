@@ -1,0 +1,75 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "beneficiario")
+public class Beneficiario {
+	@Id
+	@Column(name = "curp")
+	private String id;
+	
+	@Column(name = "nombre")
+	private String nombre;
+	
+	@Column(name = "paterno")
+	private String apellidoPaterno;
+	
+	@Column(name = "materno")
+	private String apellidoMaterno;
+	
+	@Column(name = "telefono_casa")
+	private String telefono;
+	
+	@Column(name = "fecha_nacimiento")
+	private Date fechaNacimiento;
+	
+	@Column(name = "fecha_registro")
+	private Date fechaRegistro;
+	
+	@Column(name = "correo_e")
+	private String correoElectronico;
+	
+	@Column(name = "nalle_num")
+	private String calleNumero;
+	
+	@Column(name = "codigo_p")
+	private Integer codigoPostal;
+	
+	@Column(name = "observacion")
+	private String observaciones;
+	
+	@Column(name = "sanguineo")
+	private Integer sanguineo;
+	
+	@Column(name = "folio")
+	private String folio;
+	
+	@Column(name = "contacto")
+	private Integer contacto;
+
+	@Column(name = "foto")
+	private String foto;
+	
+	@Column(name = "carpeta")
+	private String carpeta;
+	
+	@OneToOne(optional = false, mappedBy = "beneficiario")
+	@JoinColumn(name = "contacto", referencedColumnName = "contacto", insertable = false, updatable = false)
+	private Contacto contactoObj;
+	
+	@OneToOne(optional = false, mappedBy = "beneficiario")
+	@JoinColumn(name = "sanguieno", referencedColumnName = "sanguineo", insertable = false, updatable = false)
+	private Sanguineo sanguienoObj;
+	
+	@OneToOne(optional = false, mappedBy = "beneficiario")
+	@JoinColumn(name = "codigo_p", referencedColumnName = "codigo_p", insertable = false, updatable = false)
+	private CodigoPostal codigoPostalObj;
+}

@@ -1,0 +1,29 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "delegacion")
+public class Delegaciones {
+	@Id
+	@Column(name = "id_delega")
+	private Integer id;
+	
+	@Column(name = "id_edo")
+	private Integer estado;
+	
+	@Column(name = "delegacion")
+	private String nombreDelegacion;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_edo", referencedColumnName = "id_edo", insertable = false, updatable = false)
+	private List<Estados> estados;
+}

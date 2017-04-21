@@ -1,0 +1,24 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "beneficia_tarjeta")
+public class BeneficiaTarjeta {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	private Integer id;
+	private Date fechaMovimiento;
+	private String curp;
+	private Integer tarjeta;
+	private Integer estadoTarjeta;
+	private Integer usuario;
+}

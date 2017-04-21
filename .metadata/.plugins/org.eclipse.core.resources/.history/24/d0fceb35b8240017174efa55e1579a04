@@ -1,0 +1,29 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "beneficia_discap")
+public class BeneficiaDiscapacidad {
+	
+	@Id
+	@Column(name = "curp")
+	private String curp;
+	
+	@Column(name = "discapacidad")
+	private Integer discapacidad;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "discapacidad", referencedColumnName = "id_discapacidad", insertable = false, unique = false)
+	private Discapacidad discapacidadObj;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "curp", referencedColumnName = "curp", insertable = false, updatable = false)
+	private Beneficiario beneficiarioObj;
+}

@@ -1,0 +1,38 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "codigo_postal")
+public class CodigoPostal {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id_cp")
+	private Integer id;
+	
+	@Column(name = "cp")
+	private String codigoPostal;
+	
+	@Column(name = "asentamiento")
+	private String colonia;
+	
+	@Column(name = "tipo")
+	private String tipo;
+	
+	@Column(name = "delegacion")
+	private Integer delegacion;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "delegacion", referencedColumnName = "delegacion", insertable = false, updatable = false)
+	private Delegaciones delegacionObj;
+}

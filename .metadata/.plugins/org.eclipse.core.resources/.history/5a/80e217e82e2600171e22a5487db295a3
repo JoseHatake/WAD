@@ -1,0 +1,194 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "beneficia_tarjeta")
+public class BeneficiaTarjeta {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_beneT")
+	private Integer id;
+	
+	@Column(name = "fecha_estadoT")
+	private Date fechaMovimiento;
+	
+	@Column(name = "curp")
+	private String curp;
+	
+	@Column(name = "tarjeta")
+	private Integer numeroSerieHexadecimal;
+	
+	@Column(name = "estadoT")
+	private Integer estadoTarjeta;
+	
+	@Column(name = "usuario")
+	private Integer usuario;
+	
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "curp", referencedColumnName = "curp", insertable = false, updatable = false)
+	private Beneficiario beneficiarioObj;
+	
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "tarjeta", referencedColumnName = "id_tarjeta", insertable = false, updatable = false)
+	private List<Tarjeta> tarjetaObj;
+	
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "estadoT", referencedColumnName = "estadoT", insertable = false, updatable = false)
+	private List<TarjetaEstado> estadoTarjetaObj;
+	
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "usuario", referencedColumnName = "id_usuario", insertable = false, updatable = false)
+	private List<Usuario> usuarioObj;
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the fechaMovimiento
+	 */
+	public Date getFechaMovimiento() {
+		return fechaMovimiento;
+	}
+
+	/**
+	 * @param fechaMovimiento the fechaMovimiento to set
+	 */
+	public void setFechaMovimiento(Date fechaMovimiento) {
+		this.fechaMovimiento = fechaMovimiento;
+	}
+
+	/**
+	 * @return the curp
+	 */
+	public String getCurp() {
+		return curp;
+	}
+
+	/**
+	 * @param curp the curp to set
+	 */
+	public void setCurp(String curp) {
+		this.curp = curp;
+	}
+
+	/**
+	 * @return the numeroSerieHexadecimal
+	 */
+	public Integer getNumeroSerieHexadecimal() {
+		return numeroSerieHexadecimal;
+	}
+
+	/**
+	 * @param numeroSerieHexadecimal the numeroSerieHexadecimal to set
+	 */
+	public void setNumeroSerieHexadecimal(Integer numeroSerieHexadecimal) {
+		this.numeroSerieHexadecimal = numeroSerieHexadecimal;
+	}
+
+	/**
+	 * @return the estadoTarjeta
+	 */
+	public Integer getEstadoTarjeta() {
+		return estadoTarjeta;
+	}
+
+	/**
+	 * @param estadoTarjeta the estadoTarjeta to set
+	 */
+	public void setEstadoTarjeta(Integer estadoTarjeta) {
+		this.estadoTarjeta = estadoTarjeta;
+	}
+
+	/**
+	 * @return the usuario
+	 */
+	public Integer getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(Integer usuario) {
+		this.usuario = usuario;
+	}
+
+	/**
+	 * @return the beneficiarioObj
+	 */
+	public Beneficiario getBeneficiarioObj() {
+		return beneficiarioObj;
+	}
+
+	/**
+	 * @param beneficiarioObj the beneficiarioObj to set
+	 */
+	public void setBeneficiarioObj(Beneficiario beneficiarioObj) {
+		this.beneficiarioObj = beneficiarioObj;
+	}
+
+	/**
+	 * @return the tarjetaObj
+	 */
+	public List<Tarjeta> getTarjetaObj() {
+		return tarjetaObj;
+	}
+
+	/**
+	 * @param tarjetaObj the tarjetaObj to set
+	 */
+	public void setTarjetaObj(List<Tarjeta> tarjetaObj) {
+		this.tarjetaObj = tarjetaObj;
+	}
+
+	/**
+	 * @return the estadoTarjetaObj
+	 */
+	public List<TarjetaEstado> getEstadoTarjetaObj() {
+		return estadoTarjetaObj;
+	}
+
+	/**
+	 * @param estadoTarjetaObj the estadoTarjetaObj to set
+	 */
+	public void setEstadoTarjetaObj(List<TarjetaEstado> estadoTarjetaObj) {
+		this.estadoTarjetaObj = estadoTarjetaObj;
+	}
+
+	/**
+	 * @return the usuarioObj
+	 */
+	public List<Usuario> getUsuarioObj() {
+		return usuarioObj;
+	}
+
+	/**
+	 * @param usuarioObj the usuarioObj to set
+	 */
+	public void setUsuarioObj(List<Usuario> usuarioObj) {
+		this.usuarioObj = usuarioObj;
+	}
+}

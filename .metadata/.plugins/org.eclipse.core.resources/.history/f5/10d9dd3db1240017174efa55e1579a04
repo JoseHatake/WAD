@@ -1,0 +1,52 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import java.util.Date;
+
+import javax.persistence.AttributeOverride;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tarjeta")
+public class Tarjeta {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_tarjeta")
+	private Integer id;
+	
+	@Column(name = "num_serie")
+	private String numeroSerieHexadecimal;
+	
+	@Column(name = "fecha_alta")
+	private Date fechaAlta;
+	
+	@Column(name = "vigencia")
+	private Date vigencia;
+	
+	@Column(name = "tipo")
+	private Integer tipo;
+	
+	@Column(name = "estatus")
+	private Integer estatus;
+	
+	@Column(name = "maquina")
+	private String maquina;
+	
+	@OneToOne(optional = false, mappedBy = "tarjeta")
+	@JoinColumn(name = "tipo", referencedColumnName = "tipo", insertable = false, updatable = false)
+	private TarjetaTipo tipoTarjetaObj;
+	
+	@OneToOne(optional = false, mappedBy = "tarjeta")
+	@JoinColumn(name = "estatus", referencedColumnName = "estatus", insertable = false, updatable = false)
+	private TarjetaEstatus estatusTarjetaObj;
+	
+	@OneToOne(optional = false, mappedBy = "tarjeta")
+	@JoinColumn(name = "maquina", referencedColumnName = "maquina", insertable = false, updatable = false)
+	private Maquina maquinaObj;
+}

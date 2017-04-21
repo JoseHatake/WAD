@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import mx.ipn.escom.wad.controlacceso.bs.exception.LoginDuplicatedException;
 import mx.ipn.escom.wad.controlacceso.dao.UsuarioDao;
 import mx.ipn.escom.wad.controlacceso.mapeo.Usuario;
 
@@ -28,8 +29,15 @@ public class UsuarioBs {
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public Usuario save(Usuario usuario) {
-		return usuarioDao.save(usuario);
+	public Usuario save(Usuario usuario) throws LoginDuplicatedException{
+		Usuario example = new Usuario();
+		example.setLogin(usuario.getLogin());
+		List<Usuario> listUsuarios = usuarioDao.findByExample(example);
+		if (listUsuarios.isEmpty()) {
+			return usuarioDao.save(usuario);
+		} else {
+			throw new LoginDuplicatedException();
+		}
 	}
 
 	@Transactional(rollbackFor = Exception.class)
@@ -46,7 +54,7 @@ public class UsuarioBs {
 	public void delete(Integer idUsuario) {
 		usuarioDao.delete(idUsuario);
 	}
-	
+
 	public UsuarioDao getUsuarioDao() {
 		return usuarioDao;
 	}
@@ -55,5 +63,4 @@ public class UsuarioBs {
 		this.usuarioDao = usuarioDao;
 	}
 
-	
 }

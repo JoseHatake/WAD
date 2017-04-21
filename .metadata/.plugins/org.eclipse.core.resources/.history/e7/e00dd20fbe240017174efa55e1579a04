@@ -1,0 +1,14 @@
+package mx.gob.stcm.credencial.accesoDB.dao;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+
+@Service("beneficiarioDao")
+@Scope(value = BeanDefinition.SCOPE_SINGLETON)
+public class BeneficiarioDao {
+	@Autowired
+	private SessionFactory sessionFactory;
+}

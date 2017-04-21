@@ -1,0 +1,5 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+public class Tarjeta {
+
+}

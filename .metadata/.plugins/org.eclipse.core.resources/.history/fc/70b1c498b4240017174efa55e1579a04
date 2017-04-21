@@ -1,0 +1,45 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "beneficia_tarjeta")
+public class BeneficiaTarjeta {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_beneT")
+	private Integer id;
+	
+	@Column(name = "fecha_estadoT")
+	private Date fechaMovimiento;
+	
+	@Column(name = "curp")
+	private String curp;
+	
+	@Column(name = "tarjeta")
+	private Integer numeroSerieHexadecimal;
+	
+	@Column(name = "estadoT")
+	private Integer estadoTarjeta;
+	
+	@Column(name = "usuario")
+	private Integer usuario;
+	
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "curp", referencedColumnName = "curp", insertable = false, updatable = false)
+	private List<Beneficiario> beneficiarioObj;
+	
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	private List<Tarjeta> tarjetaObj;
+}

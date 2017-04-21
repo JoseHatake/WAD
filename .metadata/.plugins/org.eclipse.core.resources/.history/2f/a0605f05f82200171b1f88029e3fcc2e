@@ -1,0 +1,26 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "delegacion")
+public class Delegaciones {
+	@Id
+	@Column(name = "id_delega")
+	private Integer id;
+	
+	@Column(name = "id_edo")
+	private Integer estado;
+	
+	@Column(name = "delegacion")
+	private String nombreDelegacion;
+	
+	@OneToMany(mappedBy = "delegacion")
+	@JoinColumn(name = "id_delega", referencedColumnName = "id_delega", insertable = false, updatable = false)
+	private CodigoPostal codigoPostal;
+}

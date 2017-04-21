@@ -1,0 +1,38 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "contacto")
+public class Contacto {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_contacto")
+	private Integer id;
+	
+	@Column(name = "nombre")
+	private String nombre;
+	
+	@Column(name = "paterno")
+	private String apellidoPaterno;
+	
+	@Column(name = "materno")
+	private String apellidoMaterno;
+	
+	@Column(name = "calle_nun")
+	private String calleNumero;
+	
+	@Column(name = "codigo_p")
+	private Integer codigoPostal;
+	
+	@Column(name = "telefono")
+	private String telefono;
+	
+	@Column(name = "observacion")
+	private String observaciones;
+}

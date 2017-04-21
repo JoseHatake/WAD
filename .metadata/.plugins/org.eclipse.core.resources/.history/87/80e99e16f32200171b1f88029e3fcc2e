@@ -1,0 +1,42 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "beneficiario")
+public class Beneficiario {
+	private String id;
+	private String nombre;
+	private String apellidoPaterno;
+	private String apellidoMaterno;
+	private String telefono;
+	private Date fechaNacimiento;
+	private Date fechaRegistro;
+	private String correoElectronico;
+	private String calleNumero;
+	private Integer codigoPostal;
+	private String observaciones;
+	private Integer sanguineo;
+	private String folio;
+	private Integer contacto;
+	private String foto;
+	private String carpeta;
+	
+	@OneToOne(optional = false, mappedBy = "beneficiario")
+	@JoinColumn(name = "contacto", referencedColumnName = "contacto", insertable = false, updatable = false)
+	private Contacto contactoObj;
+	
+	@ManyToOne
+	@JoinColumn(name = "sanguieno", referencedColumnName = "sanguineo", insertable = false, updatable = false)
+	private Sanguineo tipoSanguineo;
+	
+	@ManyToOne()
+	@JoinColumn(name = "codigo_p", referencedColumnName = "codigo_p", insertable = false, updatable = false)
+	private CodigoPostal codigoPostalObj;
+}

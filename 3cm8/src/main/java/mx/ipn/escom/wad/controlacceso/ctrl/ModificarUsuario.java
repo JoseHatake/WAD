@@ -17,6 +17,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import mx.ipn.escom.wad.controlacceso.bs.UsuarioBs;
 import mx.ipn.escom.wad.controlacceso.mapeo.Usuario;
+import mx.ipn.escom.wad.util.FieldErrors;
 
 /**
  * Servlet implementation class ModificarUsuario
@@ -48,8 +49,10 @@ public class ModificarUsuario extends HttpServlet {
 			throws ServletException, IOException {
 		Integer idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
 		Usuario usuario = usuarioBs.findById(idUsuario);
+		FieldErrors fieldErrors = new FieldErrors();
 		RequestDispatcher rd = request.getRequestDispatcher("usuarios/modificar.jsp");
 		request.setAttribute("usuario", usuario);
+		request.setAttribute("fieldErrors", fieldErrors);
 		rd.forward(request, response);
 	}
 
@@ -59,26 +62,73 @@ public class ModificarUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Usuario usuario = obtenerUsuario(request);
-		usuario = usuarioBs.update(usuario);
-		response.sendRedirect("GestionarUsuarioCtrl");
+		FieldErrors fieldErrors = new FieldErrors();
+		Usuario usuario = obtenerUsuario(request,fieldErrors);
+		if (!fieldErrors.hasFieldErrors()) {
+			usuarioBs.update(usuario);
+			response.sendRedirect("GestionarUsuarioCtrl");
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("usuarios/modificar.jsp");
+			request.setAttribute("usuario", usuario);
+			request.setAttribute("fieldErrors", fieldErrors);
+			rd.forward(request, response);
+		}
+		/*try {
+			if (!fieldErrors.hasFieldErrors()) {
+				usuarioBs.update(usuario);
+				response.sendRedirect("GestionarUsuarioCtrl");
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("usuarios/modificar.jsp");
+				request.setAttribute("usuario", usuario);
+				request.setAttribute("fieldErrors", fieldErrors);
+				rd.forward(request, response);
+			}
+		} catch (LoginDuplicatedException lde) {
+			RequestDispatcher rd = request.getRequestDispatcher("usuarios/modificar.jsp");
+			request.setAttribute("usuario", usuario);
+			String mensaje = "El login proporcionado ya se encuentra registrado";
+			request.setAttribute("mensaje", mensaje);
+			request.setAttribute("fieldErrors", fieldErrors);
+			rd.forward(request, response);
+		}*/
 	}
 
-	private Usuario obtenerUsuario(HttpServletRequest request) {
+	private Usuario obtenerUsuario(HttpServletRequest request, FieldErrors errors) {
 		Usuario u = new Usuario();
 		u.setId(Integer.parseInt(request.getParameter("idUsuario")));
-		u.setNombre(request.getParameter("nombre"));
-		u.setPrimerApellido(request.getParameter("primerApellido"));
-		u.setSegundoApellido(request.getParameter("segundoApellido"));
-		String fechaString=request.getParameter("nacimiento");
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		Date nacimiento = null;
-		try{
-			nacimiento = format.parse(fechaString);
-		} catch (ParseException pe) {
-			// agregar el error de conversion
+		String nombre = request.getParameter("nombre");
+		if (nombre == null || nombre != null && nombre.equals("")) {
+			errors.add("nombre", "Favor de proporcionar el nombre");
+		} else {
+			u.setNombre(nombre);
 		}
-		u.setNacimiento(nacimiento);
+		String primerApellido = request.getParameter("primerApellido");
+		if (primerApellido == null || primerApellido != null && primerApellido.equals("")) {
+			errors.add("primerApellido", "Favor de proporcionar el primer apellido");
+		} else {
+			u.setPrimerApellido(primerApellido);
+		}
+		String segundoApellido = request.getParameter("segundoApellido");
+		if (segundoApellido == null || segundoApellido != null && segundoApellido.equals("")) {
+			errors.add("segundoApellido", "Favor de proporcionar el segundo apellido");
+		} else {
+			u.setSegundoApellido(segundoApellido);
+		}
+		String fechaString = request.getParameter("nacimiento");
+		if(fechaString==null||fechaString!=null&&fechaString.equals("")){
+			errors.add("nacimiento", "Favor de proporcionar la fecha de nacimiento");
+		} else {
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+			Date nacimiento = null;
+			System.out.println("ELSE----->");
+			try {
+				nacimiento = format.parse(fechaString);
+				u.setNacimiento(nacimiento);
+			} catch (ParseException pe) {
+				pe.printStackTrace();
+				errors.add("nacimiento", "El formato de la fecha es incorrecto (dd/mm/aaaa)");
+			}
+		}
 		return u;
 	}
 	

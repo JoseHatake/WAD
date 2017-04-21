@@ -1,0 +1,13 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "estados")
+@Inheritance(strategy=InheritanceType.JOINED)
+public class Estados {
+	
+}

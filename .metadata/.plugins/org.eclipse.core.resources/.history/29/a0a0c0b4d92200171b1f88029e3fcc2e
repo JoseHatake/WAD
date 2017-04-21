@@ -1,0 +1,68 @@
+package mx.gob.stcm.credencial.accesoDB.mapeo;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "estados")
+public class Estados {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id_edo")
+	private Integer id;
+	
+	@Column(name = "estado")
+	private String nombreEstado;
+	
+	@OneToMany(mappedBy="estados")
+	private List<Delegaciones> delegacion;
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the nombreEstado
+	 */
+	public String getNombreEstado() {
+		return nombreEstado;
+	}
+
+	/**
+	 * @param nombreEstado the nombreEstado to set
+	 */
+	public void setNombreEstado(String nombreEstado) {
+		this.nombreEstado = nombreEstado;
+	}
+
+	/**
+	 * @return the delegacion
+	 */
+	public List<Delegaciones> getDelegacion() {
+		return delegacion;
+	}
+
+	/**
+	 * @param delegacion the delegacion to set
+	 */
+	public void setDelegacion(List<Delegaciones> delegacion) {
+		this.delegacion = delegacion;
+	}
+}

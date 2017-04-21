@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -40,11 +41,15 @@ public class UsuarioDao {
 	public Usuario findById(Integer idUsuario) {
 		return sessionFactory.getCurrentSession().load(Usuario.class, idUsuario);
 	}
-	
+
 	public void delete(Integer idUsuario) {
 		Query q = sessionFactory.getCurrentSession().getNamedQuery("deleteUsuario");
 		q.setParameter("idUsuario", idUsuario);
 		q.executeUpdate();
+	}
+
+	public List<Usuario> findByExample(Usuario example) {
+		return sessionFactory.getCurrentSession().createCriteria(Usuario.class).add(Example.create(example)).list();
 	}
 
 	public SessionFactory getSessionFactory() {
